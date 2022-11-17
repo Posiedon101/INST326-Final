@@ -2,30 +2,50 @@ from argparse import ArgumentParser
 import sys
 
 class Person:
-    """_summary_
+    """Class that creates a Person object to represent the person that has 
+        created an appointment for the scheduler
+    
+    Attributes:
+        name (str): Name of the person
     """
     def __init__(self, name):
-        """_summary_
-
+        """Creates Attributes of the Person Object
+        
         Args:
-            name (_type_): _description_
+            name (str): Name of the person. 
         """
         
-    def add_person():
-        """_summary_
+    def add_person(self):
+        """Adds a person object to the queue
+        
+        Args:
+        
         """
         
-    def remove_person():
-        """_summary_
-        """
+    def remove_person(self):
+        """Removes a person object from the queue
         
-    def create_appt():
-        """_summary_
+        Args:
         """
-        
-    def __repr__(self):
-        """_summary_
-        """
+    
+def create_appt(person, time, day, reason=None):
+    """Creates an appointment for the person. 
+    
+    Args:
+        person (Person): The Person that is creating the appointment
+        time (str): Time of the day that the appointment takes place.
+        day (str): Day that the appointment takes place on.
+        reason (str): Brief explanation for the reason of the appointment 
+            Defaults to None.
+            
+    Returns:
+
+    Side-effects:
+
+    """
+    
+def __repr__(self):
+    """Returns a formal representation of the appointment"""
         
 def main():
     """_summary_
