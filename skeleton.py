@@ -49,6 +49,7 @@ def __repr__(self):
         
 def main():
     """_summary_
+    
     """
     
 def export():
@@ -56,5 +57,10 @@ def export():
     """
     
 def parse_args():
-    """_summary_
+    """Parse command-line arguments
+        Expects the arguments, the path to a file of appointments
+        Args:
+            arglist(list): command line arguments.
+        Returns:
+            namespace: an object with an attribute , file , containing a string and integer 
     """
