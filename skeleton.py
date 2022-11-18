@@ -15,52 +15,49 @@ class Person:
             name (str): Name of the person. 
         """
         
-    def add_person(self):
-        """Adds a person object to the queue
-        
-        Args:
-        
-        """
-        
-    def remove_person(self):
-        """Removes a person object from the queue
-        
-        Args:
-        """
+def add_person(self):
+    """Adds a person object to the queue"""
     
-def create_appt(person, time, day, reason=None):
+def remove_person(self):
+    """Removes a person object from the queue"""
+    
+def create_appt(person, date, time, reason=None):
     """Creates an appointment for the person. 
     
     Args:
         person (Person): The Person that is creating the appointment
-        time (str): Time of the day that the appointment takes place.
-        day (str): Day that the appointment takes place on.
+        date (str): Date that the appointment takes place on.
+         time (str): Time of the day that the appointment takes place.
         reason (str): Brief explanation for the reason of the appointment 
             Defaults to None.
-            
-    Returns:
-
-    Side-effects:
-
     """
-    
-def __repr__(self):
-    """Returns a formal representation of the appointment"""
         
-def main():
+def main(name, date, time):
     """_summary_
     
     """
     
+def __repr__(self):
+        
+    
 def export():
-    """Returns data (appt time, etc) in various forms, excel sheet, datafram, csv
+    """Exports data into a specified file type. Those types could be any of 
+        csv, txt, xls, etc. (We wont export to all only 1 or possibly 2)
     """
     
-def parse_args():
+def parse_args(arglist):
     """Parse command-line arguments
         Expects the arguments, the path to a file of appointments
-        Args:
-            arglist(list): command line arguments.
-        Returns:
-            namespace: an object with an attribute , file , containing a string and integer 
+        
+    Args:
+        arglist (list): command line arguments.
+    
+    Returns:
+        namespace: the parsed arguments, as a namespace. The arguments include
+            name of the person, date of the appointment, and the time on that
+            day.  
     """
+
+if __name__ == "__main__":
+    args = parse_args(sys.argv[1:])
+    main(args.name, args.date, args.time)
