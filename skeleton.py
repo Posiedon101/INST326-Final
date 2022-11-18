@@ -52,7 +52,7 @@ def main():
     """
     
 def export():
-    """
+    """Returns data (appt time, etc) in various forms, excel sheet, datafram, csv
     """
     
 def parse_args():
