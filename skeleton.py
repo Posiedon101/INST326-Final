@@ -14,23 +14,24 @@ class Person:
         Args:
             name (str): Name of the person. 
         """
-        
-def add_person(self):
-    """Adds a person object to the queue"""
     
-def remove_person(self):
-    """Removes a person object from the queue"""
+class Appointment:
+    """Creates an appointment object for the person object. 
     
-def create_appt(person, date, time, reason=None):
-    """Creates an appointment for the person. 
-    
-    Args:
+    Attributes:
         person (Person): The Person that is creating the appointment
         date (str): Date that the appointment takes place on.
-         time (str): Time of the day that the appointment takes place.
+        time (str): Time of the day that the appointment takes place.
         reason (str): Brief explanation for the reason of the appointment 
             Defaults to None.
     """
+    def __init__(self, person, date, time, reason=None):
+    
+    def add_appt(self, date):
+        """Adds an appointment to the queue for that day"""
+    
+    def remove_appt(self, date):
+        """Removes an appointment from the queue for that day"""
         
 def main(name, date, time):
     """_summary_
