@@ -35,7 +35,17 @@ class Appointment:
         """Removes an appointment from the queue for that day"""
         
 def main(name, date, time):
-    """_summary_
+    """ main method will take 3 arguments given by the user on the command line
+        from the parse_args. It will create a Person object using the name
+        provided in the user input. Next an appointment will be made using the
+        Person object, the date, the time, and the optional reason for the 
+        appointment. Main will also allow for the editing of pre-existing 
+        appointments.
+        
+        Args:
+            name(str): Name of the person
+            date(str): Appointment Date
+            time(str): Appointment Time 
     
     """
     
