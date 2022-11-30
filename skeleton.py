@@ -1,25 +1,12 @@
 from argparse import ArgumentParser
 import sys
-
-class Person:
-    """Class that creates a Person object to represent the person that has 
-        created an appointment for the scheduler
-    
-    Attributes:
-        name (str): Name of the person
-    """
-    def __init__(self, name):
-        """Creates Attributes of the Person Object
-        
-        Args:
-            name (str): Name of the person. 
-        """
+import pandas as pd
     
 class Appointment:
-    """Creates an appointment object for the person object. 
+    """Creates an appointment object for the person. 
     
     Attributes:
-        person (Person): The Person that is creating the appointment
+        person (str): The name of the person that is creating the appointment
         date (str): Date that the appointment takes place on.
         time (str): Time of the day that the appointment takes place.
         reason (str): Brief explanation for the reason of the appointment 
@@ -34,8 +21,11 @@ class Appointment:
     def remove_appt(self, date):
         """Removes an appointment from the queue for that day"""
         
+    def edit_appt(self, person, date=None, time=None, reason=None):
+        
+        
 def main(name, date, time):
-    """ main method will take 3 arguments given by the user on the command line
+    """ Main method will take 3 arguments given by the user on the command line
         from the parse_args. It will create a Person object using the name
         provided in the user input. Next an appointment will be made using the
         Person object, the date, the time, and the optional reason for the 
@@ -49,7 +39,7 @@ def main(name, date, time):
     
     """
     
-def __repr__(self):
+def __str__(self):
        """""" 
     
 def export():
