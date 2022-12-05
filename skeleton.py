@@ -14,6 +14,8 @@ class Person:
         Args:
             name (str): Name of the person. 
         """
+        self.name = name 
+        
         
     def add_person(self):
         """Adds a person object to the queue
@@ -21,6 +23,13 @@ class Person:
         Args:
         
         """
+        
+        queue = []
+        
+        queue.append(Person(self.name))
+        
+        return queue
+    
         
     def remove_person(self):
         """Removes a person object from the queue
@@ -58,3 +67,5 @@ def export():
 def parse_args():
     """_summary_
     """
+    
+    
