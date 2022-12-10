@@ -12,13 +12,14 @@ class Appointment:
         reason (str): Brief explanation for the reason of the appointment 
             Defaults to None.
     """
-    def __init__(self, person, date, time, reason=None):
+    def __init__(self, person, date, time, reason, location):
         """"""
     
         self.person = person 
         self.date = date
         self.time = time
         self.reason = reason 
+        self.location = location
         
         
     def add_appt(self, date):
@@ -72,6 +73,74 @@ def main(name, date, time):
             time(str): Appointment Time 
     
     """
+    appointments = pd.read_csv("Appointments_CSVs_-_Sheet1.csv")
+people = []
+repeat = ""
+
+for i in range(len(appointments)):
+    person = Appointment(appointments.loc[i][0], appointments.loc[i][1], appointments.loc[i][2], appointments.loc[i][3], appointments.loc[i][4])
+    people.append(person)
+    
+while repeat != "n":
+    main_dec = input("""Welcome to our Scheduler:\n
+                        Please enter an option below:\n
+                        1. Create Appointment\n
+                        2. View Appointments for a day\n
+                        3. Edit Appointment\n
+                        4. Quit
+                        """)
+
+    if main_dec == "1":
+        appt_info = input("Please enter Name, Date, Time, Reason, and Location for the appointment: ").split(",")
+        appt = Appointment(appt_info[0], appt_info[1], appt_info[2], appt_info[3], appt_info[4])
+        people.append(appt)
+        repeat = input("Is there anything else you need? (y/n): ")
+
+    elif main_dec == "2":
+        current_day = input("What day would you like to view?")
+        todays_appts = []
+
+        for i in people:
+            if i.date == current_day:
+                todays_appts.append(i)
+        print(f"Here are your appointments for today: {sorted(todays_appts)}")
+        repeat = input("Is there anything else you need? (y/n): ")
+
+
+    elif main_dec == "3":
+        username = input("Please enter your name: ")
+        for i in people:
+            if i.person == username:
+                current_appt = i
+        print(f"Your current appointment information is: {current_appt}")        
+        while edit != "5":
+            edit = input("""What would you like to edit: \n
+                        Please enter an option below: \n
+                        1. Date\n
+                        2. Time\n
+                        3. Reason\n
+                        4. Location\n
+                        5. Quit
+                        """)
+            if edit == "1":
+                new_date = input("What would you like the new date to be: ")
+                current_appt.edit_appt(username, date=new_date)
+                print(f"Your new appointment information is {repr(current_appt)}")
+            elif edit == "2":
+                new_time = input("What would you like the new time to be (HH:MM format): ")
+                current_appt.edit_appt(username, time=new_time)
+                print(f"Your new appointment information is {repr(current_appt)}")
+            elif edit == "3":
+                new_reason = input("What would you like the new reason to be: ")
+                current_appt.edit_appt(username, reason=new_reason)
+                print(f"Your new appointment information is {repr(current_appt)}")
+            elif edit == "4":
+                new_location = input("What would you like the new location to be: ")
+                current_appt.edit_appt(username, location=new_location)
+                print(f"Your new appointment information is {repr(current_appt)}")
+            repeat = input("Is there anything else you need? (y/n): ")
+    else:
+        repeat = "n"
     
 def __str__(self):
        """""" 
