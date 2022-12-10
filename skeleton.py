@@ -73,6 +73,9 @@ def parse_args(arglist):
             name of the person, date of the appointment, and the time on that
             day.  
     """
+    parser = ArgumentParser()
+    parser.add_argument("file", help= "file of pre-made appointments")
+    return parser.parse_args(arglist)
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
