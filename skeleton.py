@@ -35,7 +35,27 @@ class Appointment:
     def remove_appt(self, date):
         """Removes an appointment from the queue for that day"""
         
-    def edit_appt(self, person, date=None, time=None, reason=None):
+    def edit_appt(self, person, date=None, time=None, reason=None, 
+                  location = None):
+        if date is None:
+            self.date = self.date
+        else:
+            self.date = date
+        
+        if time is None:
+            self.time = self.time
+        else:
+            self.time = time
+            
+        if reason is None:
+            self.reason = self.reason
+        else:
+            self.reason = reason
+            
+        if location is None:
+            self.location = self.location
+        else:
+            self.location = location
         
         
 def main(name, date, time):
