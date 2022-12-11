@@ -155,6 +155,7 @@ def export():
         csv, txt, xls, etc. (We wont export to all only 1 or possibly 2)
     """
     df = pd.read_csv("Appointments_CSVs_-_Sheet1.csv")
+    df.to.csv("Appintments_CSVs_-_Sheet1.csv")
 def parse_args(arglist):
     """Parse command-line arguments
         Expects the arguments, the path to a file of appointments
