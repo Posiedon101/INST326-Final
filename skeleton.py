@@ -66,7 +66,7 @@ class Appointment:
                 String: A message of what would appear when the User schedules an appointment""" 
                 
             return f"""Your appointment has been made for {Appointment.date} at 
-            {Appointment.time} about {Appointment.reason}, in 
+            {Appointment.time} about {Appointment.reason},  
             {Appointment.location}"""
         
         
@@ -163,12 +163,11 @@ def main(filepath):
     
 
     
-def export():
+def export(df):
     """Exports data into a specified file type. Those types could be any of 
         csv, txt, xls, etc. (We wont export to all only 1 or possibly 2)
     """
-    df = pd.read_csv("Appointments_CSVs_-_Sheet1.csv")
-    df.to_csv("Appintments_CSVs_-_Sheet1.csv")
+    df.to_csv("New_Appointment_File")
 def parse_args(arglist):
     """Parse command-line arguments
         Expects the arguments, the path to a file of appointments
