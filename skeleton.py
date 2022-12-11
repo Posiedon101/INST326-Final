@@ -25,11 +25,12 @@ class Appointment:
     def add_appt(self, date):
         """Adds an appointment to the queue for that day"""
         
-        queue = []
         
-        queue.append(Appointment())
+        if self.date == date:
+            todays_appts.append(self)
         
-        return queue
+        
+        return todays_appts
     
     
     
