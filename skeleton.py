@@ -143,7 +143,12 @@ while repeat != "n":
         repeat = "n"
     
 def __str__(self):
-       """""" 
+       """A representation of what the User would see
+       
+       Returns:
+        String: A message of what would appear when the User schedules an appointment""" 
+        
+    return f" Your appointment has been made for {Appointment.date} at {Appointment.time} about {Appointment.reason}, in {Appointment.location}"
     
 def export():
     """Exports data into a specified file type. Those types could be any of 
