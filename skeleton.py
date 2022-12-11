@@ -70,7 +70,7 @@ class Appointment:
             {Appointment.location}"""
         
         
-def main(name, date, time):
+def main(filepath):
     """ Main method will take 3 arguments given by the user on the command line
         from the parse_args. It will create a Person object using the name
         provided in the user input. Next an appointment will be made using the
@@ -84,7 +84,7 @@ def main(name, date, time):
             time(str): Appointment Time 
     
     """
-    appointments = pd.read_csv("Appointments_CSVs_-_Sheet1.csv")
+    appointments = pd.read_csv(filepath)
     people = []
     repeat = ""
 
@@ -102,9 +102,10 @@ def main(name, date, time):
                             """)
 
         if main_dec == "1":
-            appt_info = input("Please enter Name, Date, Time, Reason, and Location for the appointment: ").split(",")
+            appt_info = input("Please enter Name, Date, Time (Format HH:MM), Reason, and Location for the appointment: ").split(",")
             appt = Appointment(appt_info[0], appt_info[1], appt_info[2], appt_info[3], appt_info[4])
             people.append(appt)
+            appointments.loc[len(appointments)] = appt_info
             repeat = input("Is there anything else you need? (y/n): ")
 
         elif main_dec == "2":
@@ -112,13 +113,13 @@ def main(name, date, time):
             todays_appts = []
 
             for i in people:
-                if i.date == current_day:
-                    todays_appts.append(i)
+                todays_appts = i.add_appt(current_day)
             print(f"Here are your appointments for today: {sorted(todays_appts)}")
             repeat = input("Is there anything else you need? (y/n): ")
 
 
         elif main_dec == "3":
+            edit=""
             username = input("Please enter your name: ")
             for i in people:
                 if i.person == username:
@@ -137,19 +138,26 @@ def main(name, date, time):
                     new_date = input("What would you like the new date to be: ")
                     current_appt.edit_appt(username, date=new_date)
                     print(f"Your new appointment information is {repr(current_appt)}")
+                    appointments.loc[appointments['Person']==username, 'Date'] = new_date
                 elif edit == "2":
                     new_time = input("What would you like the new time to be (HH:MM format): ")
                     current_appt.edit_appt(username, time=new_time)
                     print(f"Your new appointment information is {repr(current_appt)}")
+                    appointments.loc[appointments['Person']==username, 'Time'] = new_time
                 elif edit == "3":
                     new_reason = input("What would you like the new reason to be: ")
                     current_appt.edit_appt(username, reason=new_reason)
                     print(f"Your new appointment information is {repr(current_appt)}")
+                    appointments.loc[appointments['Person']==username, 'Reason'] = new_reason
                 elif edit == "4":
                     new_location = input("What would you like the new location to be: ")
                     current_appt.edit_appt(username, location=new_location)
                     print(f"Your new appointment information is {repr(current_appt)}")
+                    appointments.loc[appointments['Person']==username, 'Location'] = new_location
                 repeat = input("Is there anything else you need? (y/n): ")
+                
+                if repeat == "n":
+                    break 
         else:
             repeat = "n"
     
@@ -170,8 +178,7 @@ def parse_args(arglist):
     
     Returns:
         namespace: the parsed arguments, as a namespace. The arguments include
-            name of the person, date of the appointment, and the time on that
-            day.  
+            path to a specified file with appointments.   
     """
     parser = ArgumentParser()
     parser.add_argument("file", help= "file of pre-made appointments")
@@ -179,4 +186,4 @@ def parse_args(arglist):
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    main(args.name, args.date, args.time)
+    main(args.file)
