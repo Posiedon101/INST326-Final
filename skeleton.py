@@ -1,34 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Codespaces
-Marketplace
-Explore
- 
-@Posiedon101 
-Posiedon101
-/
-INST326-Final
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-INST326-Final/skeleton.py /
-@rvanculin
-rvanculin Update remove_appt() method
-Latest commit 9f956c4 3 minutes ago
- History
- 3 contributors
-@Jay-JB@chiefotto@rvanculin
-207 lines (168 sloc)  7.62 KB
-
 from argparse import ArgumentParser
 import sys
 import pandas as pd
@@ -51,6 +20,7 @@ class Appointment:
         self.time = time
         self.reason = reason 
         self.location = location
+        self.todays_appts = []
         
         
     def add_appt(self, date):
