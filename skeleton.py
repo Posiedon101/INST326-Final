@@ -36,6 +36,10 @@ class Appointment:
     
     def remove_appt(self, date):
         """Removes an appointment from the queue for that day"""
+        if self.date == date:
+            todays_appts.remove([self])
+
+        return todays_appts
         
     def edit_appt(self, person, date=None, time=None, reason=None, 
                   location = None):
