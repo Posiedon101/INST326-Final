@@ -90,7 +90,9 @@ def main(filepath):
     repeat = ""
 
     for i in range(len(appointments)):
-        person = Appointment(appointments.loc[i][0], appointments.loc[i][1], appointments.loc[i][2], appointments.loc[i][3], appointments.loc[i][4])
+        person = Appointment(appointments.loc[i][0], appointments.loc[i][1], 
+                             appointments.loc[i][2], appointments.loc[i][3], 
+                             appointments.loc[i][4])
         people.append(person)
         
     while repeat != "n":
@@ -103,19 +105,24 @@ def main(filepath):
                             """)
 
         if main_dec == "1":
-            appt_info = input("Please enter Name, Date, Time (Format HH:MM), Reason, and Location for the appointment: ").split(",")
-            appt = Appointment(appt_info[0], appt_info[1], appt_info[2], appt_info[3], appt_info[4])
-            people.append(appt)
+            appt_info = (input("""Please enter Name, Date, Time (Format HH:MM), 
+                               Reason, and Location for the appointment: 
+                               """).strip().split(","))
+            appt = Appointment(appt_info[0], appt_info[1], appt_info[2], 
+                               appt_info[3], appt_info[4])
             appointments.loc[len(appointments)] = appt_info
+            people.append(appt)
             repeat = input("Is there anything else you need? (y/n): ")
+            
 
         elif main_dec == "2":
-            current_day = input("What day would you like to view?")
+            current_day = input("What day would you like to view? ")
             todays_appts = []
-
+            
             for i in people:
                 todays_appts = i.add_appt(current_day)
-            print(f"Here are your appointments for today: {sorted(todays_appts)}")
+            print(f"""Here are your appointments for today: 
+                  {sorted(todays_appts)}""")
             repeat = input("Is there anything else you need? (y/n): ")
 
 
@@ -125,7 +132,7 @@ def main(filepath):
             for i in people:
                 if i.person == username:
                     current_appt = i
-            print(f"Your current appointment information is: ",current_appt)        
+            print(f"Your current appointment information is: {current_appt}")        
             while edit != "5":
                 edit = input("""What would you like to edit: \n
                             Please enter an option below: \n
@@ -139,22 +146,29 @@ def main(filepath):
                     new_date = input("What would you like the new date to be: ")
                     current_appt.edit_appt(username, date=new_date)
                     print(repr(current_appt))
-                    appointments.loc[appointments['Person']==username, 'Date'] = new_date
+                    appointments.loc[appointments['Person']==username, 
+                                     'Date'] = new_date
                 elif edit == "2":
-                    new_time = input("What would you like the new time to be (HH:MM format): ")
+                    new_time = input("""What would you like the new time to be 
+                                     (HH:MM format): """)
                     current_appt.edit_appt(username, time=new_time)
                     print(repr(current_appt))
-                    appointments.loc[appointments['Person']==username, 'Time'] = new_time
+                    appointments.loc[appointments['Person']==username, 
+                                     'Time'] = new_time
                 elif edit == "3":
-                    new_reason = input("What would you like the new reason to be: ")
+                    new_reason = input("""What would you like the new 
+                                       reason to be: """)
                     current_appt.edit_appt(username, reason=new_reason)
                     print(repr(current_appt))
-                    appointments.loc[appointments['Person']==username, 'Reason'] = new_reason
+                    appointments.loc[appointments['Person']==username, 
+                                     'Reason'] = new_reason
                 elif edit == "4":
-                    new_location = input("What would you like the new location to be: ")
+                    new_location = input("""What would you like the new 
+                                         location to be: """)
                     current_appt.edit_appt(username, location=new_location)
                     print(repr(current_appt))
-                    appointments.loc[appointments['Person']==username, 'Location'] = new_location
+                    appointments.loc[appointments['Person']==username, 
+                                     'Location'] = new_location
                 repeat = input("Is there anything else you need? (y/n): ")
                 
                 if repeat == "n":
