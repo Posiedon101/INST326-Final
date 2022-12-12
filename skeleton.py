@@ -63,7 +63,8 @@ class Appointment:
             """A representation of what the User would see
             
             Returns:
-                String: A message of what would appear when the User schedules an appointment""" 
+                String: A message of what would appear when the User schedules 
+                an appointment""" 
                 
             return f"""Your appointment has been made for {Appointment.date} at 
             {Appointment.time} about {Appointment.reason},  
@@ -84,7 +85,7 @@ def main(filepath):
             time(str): Appointment Time 
     
     """
-    appointments = pd.read_csv(filepath)
+    appointments = pd.read_csv("Appointments CSVs - Sheet1.csv")
     people = []
     repeat = ""
 
@@ -124,7 +125,7 @@ def main(filepath):
             for i in people:
                 if i.person == username:
                     current_appt = i
-            print(f"Your current appointment information is: {current_appt}")        
+            print(f"Your current appointment information is: ",,current_appt)        
             while edit != "5":
                 edit = input("""What would you like to edit: \n
                             Please enter an option below: \n
@@ -137,22 +138,22 @@ def main(filepath):
                 if edit == "1":
                     new_date = input("What would you like the new date to be: ")
                     current_appt.edit_appt(username, date=new_date)
-                    print(f"Your new appointment information is {repr(current_appt)}")
+                    print(str(current_appt))
                     appointments.loc[appointments['Person']==username, 'Date'] = new_date
                 elif edit == "2":
                     new_time = input("What would you like the new time to be (HH:MM format): ")
                     current_appt.edit_appt(username, time=new_time)
-                    print(f"Your new appointment information is {repr(current_appt)}")
+                    print(str(current_appt))
                     appointments.loc[appointments['Person']==username, 'Time'] = new_time
                 elif edit == "3":
                     new_reason = input("What would you like the new reason to be: ")
                     current_appt.edit_appt(username, reason=new_reason)
-                    print(f"Your new appointment information is {repr(current_appt)}")
+                    print(str(current_appt))
                     appointments.loc[appointments['Person']==username, 'Reason'] = new_reason
                 elif edit == "4":
                     new_location = input("What would you like the new location to be: ")
                     current_appt.edit_appt(username, location=new_location)
-                    print(f"Your new appointment information is {repr(current_appt)}")
+                    print(str(current_appt))
                     appointments.loc[appointments['Person']==username, 'Location'] = new_location
                 repeat = input("Is there anything else you need? (y/n): ")
                 
