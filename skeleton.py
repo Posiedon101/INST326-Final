@@ -59,7 +59,7 @@ class Appointment:
         else:
             self.location = location
             
-        def __str__(self):
+        def __repr__(self):
             """A representation of what the User would see
             
             Returns:
