@@ -20,27 +20,18 @@ class Appointment:
         self.time = time
         self.reason = reason 
         self.location = location
-        self.todays_appts = []
         
-        
-    def add_appt(self, date):
+    def add_appt(self, date, lst):
         """Adds an appointment to the queue for that day"""
-        
-        
         if self.date == date:
-            todays_appts.append([self])
-        
-        
-        return todays_appts
+            lst.append([self])
+        return lst
     
-    
-    
-    def remove_appt(self, date):
+    def remove_appt(self, date, lst):
         """Removes an appointment from the queue for that day"""
         if self.date == date:
-            todays_appts.remove([self])
-
-        return todays_appts
+            lst.remove([self])
+        return lst
         
     def edit_appt(self, person, date=None, time=None, reason=None, 
                   location = None):
@@ -64,16 +55,21 @@ class Appointment:
         else:
             self.location = location
             
-        def __repr__(self):
+    def __repr__(self):
             """A representation of what the User would see
             
             Returns:
                 String: A message of what would appear when the User schedules 
                 an appointment""" 
                 
-            return f"""Your appointment has been made for {Appointment.date} at 
-            {Appointment.time} about {Appointment.reason},  
-            {Appointment.location}"""
+            return f"""{self.person}, {self.date}, {self.time}, {self.reason}, 
+                        {self.location}"""
+            
+    def __lt__(self, other):
+            if self.time < other.time:
+                return True
+            else:
+                return False
         
         
 def main(filepath):
@@ -125,7 +121,7 @@ def main(filepath):
             todays_appts = []
             
             for i in people:
-                todays_appts = i.add_appt(current_day)
+                todays_appts = i.add_appt(current_day, todays_appts)
             print(f"""Here are your appointments for today: 
                   {sorted(todays_appts)}""")
             repeat = input("Is there anything else you need? (y/n): ")
@@ -180,14 +176,25 @@ def main(filepath):
                     break 
         else:
             repeat = "n"
+    remove = input("""Would you like to remove appt from the queue for  
+                    today? (y/n)""")
     
+    if remove == "y":
+        if len(todays_appts) == 0:
+            print(f"There are no appointments to remove!")
+        else:
+            for i in people:
+                todays_appts = i.remove_appt(current_day, todays_appts)
+            print(f"The queue has been emptied for the day!")
+    
+    export(appointments)
 
-    
 def export(df):
     """Exports data into a specified file type. Those types could be any of 
         csv, txt, xls, etc. (We wont export to all only 1 or possibly 2)
     """
     df.to_csv("New_Appointment_File")
+    
 def parse_args(arglist):
     """Parse command-line arguments
         Expects the arguments, the path to a file of appointments
