@@ -7,7 +7,8 @@ Jay Jean-Baptiste wrote export and __repr__. Those methods covered magic methods
 Christian Marchello wrote add_appt, __lt__ and __init__. Those methods covered conditional expressions and magic methods other than _init_. 
 
 To run our code you would need a csv file with appointment information such as Name, Date, Time, Reason, and Location.
-To actually run our code you woulde type in the terminal in the directory you put all the files in "python skeleton.py filename".
+In this instance we have given a csv file with pre made appointments called "Appointments CSVs - Sheet1.csv". 
+To actually run our code you woulde type in the terminal in the directory you put all the files in "python skeleton.py Appointments CSVs - Sheet1.csv".
 This will take you into our program and prompt you with a multitude of prompts that let you create, edit, and view appointments. 
 
 No code from outside sources were used. 
