@@ -11,9 +11,11 @@ class Appointment:
         time (str): Time of the day that the appointment takes place.
         reason (str): Brief explanation for the reason of the appointment 
             Defaults to None.
+        location (str): The location the person wants to meet, In person or 
+            online.
     """
     def __init__(self, person, date, time, reason, location):
-        """"""
+        """Initializes the attributes of the Appointment Class"""
     
         self.person = person 
         self.date = date
@@ -22,19 +24,40 @@ class Appointment:
         self.location = location
         
     def add_appt(self, date, lst):
-        """Adds an appointment to the queue for that day"""
+        """Adds an appointment to the queue for that day
+        
+        Written by Christian Marchello. Covers conditional expressions. 
+        """
         if self.date == date:
             lst.append([self])
         return lst
     
     def remove_appt(self, date, lst):
-        """Removes an appointment from the queue for that day"""
+        """Removes all appointments from the queue for that day
+        
+        Written by Rachel Van Culin. Covers conditional expressions. 
+        """
         if self.date == date:
             lst.remove([self])
         return lst
         
     def edit_appt(self, person, date=None, time=None, reason=None, 
                   location = None):
+        """Allows the user to edit the created appointment objects
+
+        Args:
+            person (str): Name of the person that the appointment object 
+                            belongs to. 
+            date (str, optional): Date of the appointment. Defaults to None.
+            time (str, optional): Time of the appointment. Defaults to None.
+            reason (str, optional): Reason for the appointment. 
+                                        Defaults to None.
+            location (str, optional): Location of the appointment. 
+                                        Defaults to None.
+        
+        Written by Rachel Van Culin. Covers conditional expressions and 
+        optional parameters.
+        """
         if date is None:
             self.date = self.date
         else:
@@ -56,35 +79,59 @@ class Appointment:
             self.location = location
             
     def __repr__(self):
-            """A representation of what the User would see
+        """A representation of what the appointment information
+        
+        Returns:
+            String: A message of what would appear when the User schedules 
+            an appointment
+        
+        Written by Jay Jean-Baptiste. Covers magic methods other than '__init__'
+        and fstrings.
+        """ 
             
-            Returns:
-                String: A message of what would appear when the User schedules 
-                an appointment""" 
-                
-            return f"""{self.person}, {self.date}, {self.time}, {self.reason}, 
-                        {self.location}"""
+        return f"""{self.person}, {self.date}, {self.time}, {self.reason}, 
+                    {self.location}"""
             
     def __lt__(self, other):
-            if self.time < other.time:
-                return True
-            else:
-                return False
+        """Compares the time of 2 appointment objects. 
+
+        Args:
+            other (Appointment): 2nd appointment which to compare to the first. 
+
+        Returns:
+            bool: Returns True if the first time is earlier than the second.
+            
+        Written by Jason Carlin. Covers magic methods other than '__init__' 
+        """
+        if self.time < other.time:
+            return True
+        else:
+            return False
         
         
 def main(filepath):
-    """ Main method will take 3 arguments given by the user on the command line
-        from the parse_args. It will create a Person object using the name
-        provided in the user input. Next an appointment will be made using the
-        Person object, the date, the time, and the optional reason for the 
-        appointment. Main will also allow for the editing of pre-existing 
-        appointments.
+    """ Main will take in 1 argument, a path to a file as a string. Main will
+        then create a dataframe from the file that it takes in. Then it will 
+        make instances of Appointment for each row in the dataframe. Main will 
+        then prompt the use to either "1: Create Appointment", 
+        "2: View Appointments for a specified day", "3: Edit a pre-existing 
+        appointment" or "4: Quit the program". Once the user selects their 
+        option they are then prompted further depending on what information 
+        is needed from them to complete the action. Once they are done with 
+        everything they will be prompted to clear the queue for that day.
+        Finally, once the program is done with user input it will export any
+        changes to any appointment object on the dataframe to a new csv file 
+        so that next time the program is run all of the new/edited data will be 
+        there. 
         
         Args:
-            name(str): Name of the person
-            date(str): Appointment Date
-            time(str): Appointment Time 
-    
+            filepath(str): Path to a file with pre made appointments. 
+            
+        Side effects:
+            Creates a new csv file. 
+            
+        Written by Jason Carlin. Covers conditional expressions, custom list 
+        sorting, fstrings, and filtering with pandas. 
     """
     appointments = pd.read_csv("Appointments CSVs - Sheet1.csv")
     people = []
@@ -190,8 +237,9 @@ def main(filepath):
     export(appointments)
 
 def export(df):
-    """Exports data into a specified file type. Those types could be any of 
-        csv, txt, xls, etc. (We wont export to all only 1 or possibly 2)
+    """Exports data into a csv file.
+    
+    Written by Jay Jean-Baptiste. 
     """
     df.to_csv("New_Appointment_File")
     
@@ -204,7 +252,9 @@ def parse_args(arglist):
     
     Returns:
         namespace: the parsed arguments, as a namespace. The arguments include
-            path to a specified file with appointments.   
+            path to a specified file with appointments. 
+            
+    Written by Jason Carlin. Covers the ArgumentParser class.   
     """
     parser = ArgumentParser()
     parser.add_argument("file", help= "file of pre-made appointments")
